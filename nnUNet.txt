@@ -1,3 +1,8 @@
+執行需要nnUNet 目錄下的可執行檔或腳本
+git clone https://github.com/MIC-DKFZ/nnUNet.git
+
+ls /home/帳號名稱/.conda/envs/nnunet/bin/
+
 <以下步驟在訓練nn-UNet前執行>
 shell 還沒有被設定好來使用 conda activate
 先初始化 Conda
