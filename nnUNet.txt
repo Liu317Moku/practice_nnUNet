@@ -1,0 +1,22 @@
+<<nnUNet>>
+執行需要nnUNet 目錄下的可執行檔或腳本
+git clone https://github.com/MIC-DKFZ/nnUNet.git
+
+ls /home/帳號名稱/.conda/envs/nnunet/bin/
+ls ~/.local/bin
+
+<以下步驟在訓練nn-UNet前執行>
+shell 還沒有被設定好來使用 conda activate
+先初始化 Conda
+conda init
+重新啟動 shell
+source ~/.bashrc
+再試著啟用環境
+conda activate nnunet
+
+PyTorch 2.x 的 Inductor 後端在做 torch.compile (即 TorchDynamo) 時需要用 C 編譯器 (gcc 或 clang)，但你的環境沒有安裝或找不到 C 編譯器，用 Conda 安裝 GCC/G++
+conda install -y -c conda-forge graphviz
+conda install -y -c conda-forge gcc_linux-64 gxx_linux-64
+指定環境變數
+export CC=$CONDA_PREFIX/bin/x86_64-conda-linux-gnu-gcc
+export CXX=$CONDA_PREFIX/bin/x86_64-conda-linux-gnu-g++
