@@ -2,10 +2,50 @@
 執行需要nnUNet 目錄下的可執行檔或腳本
 git clone https://github.com/MIC-DKFZ/nnUNet.git
 
+檢查環境及可執行檔
 ls /home/帳號名稱/.conda/envs/nnunet/bin/
 ls ~/.local/bin
 
-<以下步驟在訓練nn-UNet前執行>
+
+<<粗淺步驟提醒>>
+從conda.ipynb 開始執行，切忌在執行前所有程式碼前需要先將帳號replace成自己的，再開始執行
+從conda開始由上往下依序執行，看到 [數字] 表示完成；[*]表示正在執行，若還在執行請不要將畫面重跑，請耐心等待
+
+執行順序  git clone->conda.ipnb->pip.ipnb
+執行過程中請記得要看每個shell中的備註，以減少執行時發生的錯誤
+
+執行到conda.ipnb中這行
+!/opt/conda/condabin/conda run -p /home/glolg/.conda/envs/nnunet python -m ipykernel install --user --name nnunet --display-name "Python (nnU-Net)"
+執行完請記得將整個網頁refash一次再繼續執行其他程式
+
+開始訓練前，請至terminal進入環境conda activate nnunet，並執行後續安裝任務
+
+-PyTorch 2.x 的 Inductor 後端在做 torch.compile (即 TorchDynamo) 時需要用 C 編譯器 (gcc 或 clang)，但你的環境沒有安裝或找不到 C 編譯器，用 Conda 安裝 GCC/G++  -
+
+conda install -y -c conda-forge graphviz
+conda install -y -c conda-forge gcc_linux-64 gxx_linux-64
+
+-指定環境變數-
+
+export CC=$CONDA_PREFIX/bin/x86_64-conda-linux-gnu-gcc
+export CXX=$CONDA_PREFIX/bin/x86_64-conda-linux-gnu-g++
+
+此外預設課程中的gpu可使用有8個，編碼為0~7，執行前也請修改為只用的gpu代碼
+
+
+<<備用語法>>
+
+刪除環境conda env remove -n nnunet
+確認環境conda info --envs
+刪除資料夾目錄rm -rf ~/practice_nnUNet
+
+下載git clone https://github.com/Liu317Moku/practice_nnUNet.git
+下載git clone https://github.com/MIC-DKFZ/nnUNet.git
+
+確認kernal目錄 jupyter kernelspec list
+刪除kernal   jupyter kernelspec uninstall nnunet
+確認kernal ls /usr/local/share/jupyter/kernels/
+
 shell 還沒有被設定好來使用 conda activate
 先初始化 Conda
 conda init
@@ -13,10 +53,3 @@ conda init
 source ~/.bashrc
 再試著啟用環境
 conda activate nnunet
-
-PyTorch 2.x 的 Inductor 後端在做 torch.compile (即 TorchDynamo) 時需要用 C 編譯器 (gcc 或 clang)，但你的環境沒有安裝或找不到 C 編譯器，用 Conda 安裝 GCC/G++
-conda install -y -c conda-forge graphviz
-conda install -y -c conda-forge gcc_linux-64 gxx_linux-64
-指定環境變數
-export CC=$CONDA_PREFIX/bin/x86_64-conda-linux-gnu-gcc
-export CXX=$CONDA_PREFIX/bin/x86_64-conda-linux-gnu-g++
