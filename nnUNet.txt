@@ -46,6 +46,14 @@ export CXX=$CONDA_PREFIX/bin/x86_64-conda-linux-gnu-g++
 刪除kernal   jupyter kernelspec uninstall nnunet
 確認kernal ls /usr/local/share/jupyter/kernels/
 
+# 確認殘留目錄是否存在
+ls -la /home/glolg/.conda/envs/nnunet
+如果出現結果（有東西），就執行
+# 強制刪除整個環境資料夾
+rm -rf /home/glolg/.conda/envs/nnunet
+清掉所有暫存包（釋放空間）
+conda clean --all -y
+
 shell 還沒有被設定好來使用 conda activate
 先初始化 Conda
 conda init
