@@ -8,7 +8,7 @@ ls ~/.local/bin
 
 
 <<粗淺步驟提醒>>
-從conda.ipynb 開始執行，切忌在執行前所有程式碼前需要先將帳號replace成自己的，再開始執行
+從conda.ipynb 開始執行，切記在執行前所有程式碼前需要先將帳號replace成自己的，再開始執行
 從conda開始由上往下依序執行，看到 [數字] 表示完成；[*]表示正在執行，若還在執行請不要將畫面重跑，請耐心等待
 
 執行順序  git clone->conda.ipnb->pip.ipnb
