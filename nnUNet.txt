@@ -30,7 +30,7 @@ conda install -y -c conda-forge gcc_linux-64 gxx_linux-64
 export CC=$CONDA_PREFIX/bin/x86_64-conda-linux-gnu-gcc
 export CXX=$CONDA_PREFIX/bin/x86_64-conda-linux-gnu-g++
 
-此外預設課程中的gpu可使用有8個，編碼為0~7，執行前也請修改為只用的gpu代碼
+此外預設課程中的gpu可使用有7個，編碼為0~6，執行前也請修改為只用的gpu代碼
 
 
 <<備用語法>>
