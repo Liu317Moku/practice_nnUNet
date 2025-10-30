@@ -42,9 +42,9 @@ export CXX=$CONDA_PREFIX/bin/x86_64-conda-linux-gnu-g++
 下載git clone https://github.com/Liu317Moku/practice_nnUNet.git
 下載git clone https://github.com/MIC-DKFZ/nnUNet.git
 
-確認kernal目錄 jupyter kernelspec list
-刪除kernal   jupyter kernelspec uninstall nnunet
-確認kernal ls /usr/local/share/jupyter/kernels/
+確認kernel目錄 jupyter kernelspec list
+刪除kernel   jupyter kernelspec uninstall nnunet
+確認kernel ls /usr/local/share/jupyter/kernels/
 
 # 確認殘留目錄是否存在
 ls -la /home/glolg/.conda/envs/nnunet
