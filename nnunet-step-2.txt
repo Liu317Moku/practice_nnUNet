@@ -1,0 +1,210 @@
+step 1
+git clone https://github.com/Liu317Moku/practice_nnUNet.git
+
+step 2
+git clone https://github.com/MIC-DKFZ/nnUNet.git
+
+step 3
+ls -ld "$HOME/practice_nnUNet"
+
+step 4
+ls -ld "$HOME/nnUNet"
+
+step 5
+cd "$HOME/nnUNet"
+
+step 6
+git rev-parse --short HEAD
+
+step 7
+conda create -n nnunet python=3.10 pip -y
+
+step 8
+conda activate nnunet333
+
+step 9
+python --version
+
+step 10
+which python
+
+step 11
+python -m pip install --upgrade pip setuptools wheel
+
+step 12
+python -m pip --version
+
+step 13
+export PYTHONNOUSERSITE=1
+
+step 14
+unset PYTHONPATH
+
+step 15
+export PIP_USER=false
+
+step 16
+echo "CONDA_PREFIX=$CONDA_PREFIX"
+
+step 17
+echo "PYTHONNOUSERSITE=$PYTHONNOUSERSITE"
+
+step 18
+echo "PYTHONPATH=$PYTHONPATH"
+
+step 19
+echo "PIP_USER=$PIP_USER"
+
+step 20
+python -m pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu124
+
+step 21
+python - <<'PY'
+import torch
+
+print("=" * 60)
+print("Python / PyTorch test")
+print("=" * 60)
+
+print("PyTorch version :", torch.__version__)
+print("Torch CUDA      :", torch.version.cuda)
+print("CUDA available  :", torch.cuda.is_available())
+print("Torch location  :", torch.__file__)
+
+if torch.cuda.is_available():
+    print("GPU count       :", torch.cuda.device_count())
+
+    for i in range(torch.cuda.device_count()):
+        print(
+            f"GPU {i}           : "
+            f"{torch.cuda.get_device_name(i)}"
+        )
+
+print("=" * 60)
+PY
+
+step 22
+conda install -y -c conda-forge gcc_linux-64 gxx_linux-64 graphviz
+
+step 23
+ls -l "$CONDA_PREFIX/bin/x86_64-conda-linux-gnu-gcc"
+
+step 24
+ls -l "$CONDA_PREFIX/bin/x86_64-conda-linux-gnu-g++"
+
+step 25
+mkdir -p "$CONDA_PREFIX/etc/conda/activate.d"
+
+step 26
+cat > "$CONDA_PREFIX/etc/conda/activate.d/nnunet_env.sh" <<'EOF'
+export PYTHONNOUSERSITE=1
+unset PYTHONPATH
+export CC="$CONDA_PREFIX/bin/x86_64-conda-linux-gnu-gcc"
+export CXX="$CONDA_PREFIX/bin/x86_64-conda-linux-gnu-g++"
+EOF
+
+step 27_1
+echo "PYTHONNOUSERSITE=$PYTHONNOUSERSITE"
+
+step 27_2
+echo "PYTHONPATH=$PYTHONPATH"
+
+step 27_3
+echo "CC=$CC"
+
+step 27_4
+echo "CXX=$CXX"
+
+step 28
+python -m pip install -e .
+
+step 29
+python -m pip install ipykernel
+
+step 30
+python -m ipykernel install --user --name nnunet333 --display-name "Python (nnU-Net333)"
+
+step 31
+jupyter kernelspec list
+
+step 32
+python - <<'PY'
+import sys
+import site
+import shutil
+import torch
+import nnunetv2
+import batchgenerators
+
+print("=" * 70)
+
+print("Python")
+print(" ", sys.executable)
+
+print("\nPython version")
+print(" ", sys.version)
+
+print("\nUser site")
+print(" ", site.ENABLE_USER_SITE)
+
+print("\nPyTorch")
+print(" ", torch.__version__)
+
+print("\nTorch CUDA")
+print(" ", torch.version.cuda)
+
+print("\nCUDA available")
+print(" ", torch.cuda.is_available())
+
+print("\nTorch location")
+print(" ", torch.__file__)
+
+print("\nnnU-Net location")
+print(" ", nnunetv2.__file__)
+
+print("\nBatchgenerators location")
+print(" ", batchgenerators.__file__)
+
+print("\nExecutables")
+
+for cmd in [
+    "nnUNetv2_plan_and_preprocess",
+    "nnUNetv2_extract_fingerprint",
+    "nnUNetv2_plan_experiment",
+    "nnUNetv2_preprocess",
+    "nnUNetv2_train",
+    "nnUNetv2_predict",
+]:
+    print(f" {cmd}: {shutil.which(cmd)}")
+
+print("\nGCC")
+print(" ", shutil.which("x86_64-conda-linux-gnu-gcc"))
+
+print("\nG++")
+print(" ", shutil.which("x86_64-conda-linux-gnu-g++"))
+
+print("=" * 70)
+PY
+
+step 33之後的步驟請根據簡報內容繼續依序完成
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
